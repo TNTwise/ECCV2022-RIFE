@@ -150,9 +150,9 @@ python3 benchmark/HD_multi_4X.py
 ## Training and Reproduction
 Download [Vimeo90K dataset](http://toflow.csail.mit.edu/).
 
-We use 16 CPUs, 4 GPUs and 20G memory for training: 
+We use 16 CPUs, 1 GPUs and 20G memory for training: 
 ```
-python3 -m torch.distributed.launch --nproc_per_node=4 train.py --world_size=4
+python3 -m torch.distributed.launch --nproc_per_node=1 train.py --world_size=1
 ```
 
 ## Revision History
