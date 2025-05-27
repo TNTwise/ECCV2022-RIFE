@@ -140,16 +140,17 @@ if __name__ == "__main__":
     parser.add_argument('--epoch', default=300, type=int)
     parser.add_argument('--batch_size', default=16, type=int, help='minibatch size')
     parser.add_argument('--local_rank', default=0, type=int, help='local rank')
+    parser.add_argument('--local-rank', default=0, type=int)
     parser.add_argument('--world_size', default=4, type=int, help='world size')
     args = parser.parse_args()
     torch.distributed.init_process_group(backend="nccl", world_size=args.world_size)
-    torch.cuda.set_device(args.local_rank)
+    torch.cuda.set_device(0)
     seed = 1234
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.benchmark = True
-    model = Model(args.local_rank)
-    train(model, args.local_rank)
+    model = Model(0)
+    train(model, 0)
         
